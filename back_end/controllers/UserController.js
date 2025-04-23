@@ -130,6 +130,8 @@ const getUserById = async (req, res) => {
     res.status(200).json(user)
 }
 
+
+
 module.exports = {
     register,
     login,
