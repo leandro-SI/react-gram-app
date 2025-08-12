@@ -21,9 +21,6 @@ const userCreateValidation = () => {
             .isString()
             .withMessage("A confirmação de senha obrigatória.")
             .custom((value, {req}) => {
-                console.log("VALUE: ", value)
-                console.log("REQ: ", req.body.password)
-
                 if(value != req.body.password)
                     throw new Error("As senhas não são iguais.");
 
