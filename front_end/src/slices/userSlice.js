@@ -11,7 +11,6 @@ const initialState = {
 
 // Get user details
 export const profile = createAsyncThunk("user/profile", async (user, thunkAPI) => {
-
     const token = thunkAPI.getState().auth.user.token;
 
     const data = await userService.profile(user, token);
