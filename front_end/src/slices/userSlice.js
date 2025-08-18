@@ -52,21 +52,22 @@ export const userSlice = createSlice({
             state.error = null
             state.user = action.payload
         })
-        .addCase(profile.pending, (state) => {
+        .addCase(updateProfile.pending, (state) => {
             state.loading = true
             state.error = false
         })
-        .addCase(profile.fulfilled, (state, action) => {
+        .addCase(updateProfile.fulfilled, (state, action) => {
             state.loading = false
             state.success = true
             state.error = null
             state.user = action.payload
             state.message = "Usuário atualizado com sucesso!"
         })
-        .addCase(profile.rejected, (state, action) => {
+        .addCase(updateProfile.rejected, (state, action) => {
+            console.log(state, action)
             state.loading = false
             state.error = action.payload
-            state.user = null
+            state.user = {}
         })
 
     }

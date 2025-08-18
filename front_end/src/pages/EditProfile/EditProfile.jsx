@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Redux
-import { profile, resetMessage } from "../../slices/userSlice";
+import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
 
 // Components
 import Message from "../../components/Message";
@@ -44,8 +44,29 @@ const EditProfile = () => {
     
     console.log(user)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const userData = {
+            name,
+            profileImage,
+            bio,
+            password
+        }
+
+        const formData = new FormData()
+
+        Object.keys(userData).forEach((key) => {
+            if (userData[key]) {
+            formData.append(key, userData[key])
+            }
+        })
+
+        await dispatch(updateProfile(formData))
+
+        setTimeout(() => {
+            dispatch(resetMessage())
+        }, 2000)
     }
 
     const handleFile = (e) => {
@@ -64,6 +85,7 @@ const EditProfile = () => {
             {(user.profileImage || previewImage) && (
                 <img
                     className='profile-image'
+                    alt=""
                     src={
                         previewImage ? URL.createObjectURL(previewImage) : `${upload}/user/${user.profileImage}`
                     } 
@@ -84,7 +106,10 @@ const EditProfile = () => {
                     <span>Quer alterar sua senha?</span>
                     <input type="password" placeholder='Digite sua nova senha' onChange={(e) => setPassword(e.target.value)} value={password || ""} />
                 </label>
-                <input type="submit" value="Atualizar" />
+                {!loading && <input type="submit" value='Atualizar' />}
+                {loading && <input type="submit" value='Aguarde...' disabled />}
+                {error && <Message msg={error} type="error" />}
+                {message && <Message msg={message} type="success" />}
             </form>
         </div>
     )
