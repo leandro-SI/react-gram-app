@@ -58,7 +58,7 @@ const EditProfile = () => {
 
         Object.keys(userData).forEach((key) => {
             if (userData[key]) {
-            formData.append(key, userData[key])
+                formData.append(key, userData[key])
             }
         })
 
