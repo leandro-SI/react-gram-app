@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const PhotoItem = ({photo}) => {
 
-    console.log("IMAGEM: ", photo)
     return (
         <div className='photo-item'>
             {photo.image && (
