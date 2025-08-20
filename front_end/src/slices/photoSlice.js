@@ -63,9 +63,7 @@ export const updatePhoto = createAsyncThunk("photo/update", async (photoData, th
         title: photoData.title
     }
 
-    console.log("Vai chamar o service no slice")
     const data = await photoService.updatePhoto(dataTitle, photoData._id, token )
-    console.log("chamou o service no slice")
 
     // Check for erros
     if (data.errors) {
