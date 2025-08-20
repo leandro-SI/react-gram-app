@@ -59,10 +59,10 @@ const deletePhoto = async (id, token) => {
 const updatePhoto = async (data, id, token) => {
     
     const config = requestConfig("PUT", data, token)
-
+    
     try {
         
-        const res = await fetch(api + "/photos/" + id, config)
+        const res = await fetch(api + "/photos/update/" + id, config)
                     .then((res) => res.json())
                     .catch((err) => err)
 
