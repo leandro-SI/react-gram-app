@@ -129,9 +129,9 @@ const comment = async (data, id, token) => {
 }
 
 // Get all photo
-const getPhotos = async () => {
+const getPhotos = async (token) => {
 
-    const config = requestConfig("GET", null)
+    const config = requestConfig("GET", null, token)
 
     try {
         
