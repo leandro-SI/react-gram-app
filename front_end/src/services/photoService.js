@@ -149,7 +149,7 @@ const getPhotos = async (token) => {
 // Search photo by title
 const searchPhotos = async (query, token) => {
 
-    const config = requestConfig("GET", query, token)
+    const config = requestConfig("GET", null, token)
 
     try {
         

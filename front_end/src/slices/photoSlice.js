@@ -282,6 +282,11 @@ export const photoSlice = createSlice({
             state.error = null
             state.photos = action.payload
         })
+        .addCase(searchPhotos.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+            state.photo = {}
+        })
 
     }
 })
